@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head class="site-header">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="static/css/style.css">
+		
+        
+    <style>
+        body {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            background-color: #000000;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+				
+
+		
+            
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" id="branding">
+            <img src="dummy/logo.png" alt="Site Title">
+    <nav class="main-navigation">
+            <button style="height:40px;width:100px"  type="button" class="button"><a href="index.html">Logout</a></button>
+    </nav> <!-- .main-navigation -->
+        
+    </div>
+    
+    <script>
+        alert("Udpate the location here");
+    </script>
+    
+    <script>
+        alert("Enter Proper Location data");
+    </script>
+    <div class="container">
+        <h1>Declare Containment Zone</h1>
+    </div>
+    <div class="container">
+
+        <h3 class="slide-subtitle">Welcome: Admin!!!</h3>
+
+    </div>
+    <form method="post" action="/home">
+        <div class="container">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label><h2>Lat.:</h2></label>
+                    <input type="text" class="form-control" id="lat" name="lat" />
+                </div>
+                <div class="col-sm-6">
+                    <label><h2>Long.:</h2></label>
+                    <input type="text" class="form-control" id="lon" name="lon" />
+                </div>
+                <button type="submit" class="button">Declare Containment Zone</button>
+            
+            </div>
+        </div>
+            
+    </form>
+			<p>&nbsp; &nbsp;</p>
+                <div class="container">
+
+                    <label><h3>Get current Location:</h3></label>
+                    <button class="button" onclick="getLocation()">Current Location</button>
+                    <label><h3>(Click this first)</h3></label>
+    
+            
+                </div>
+
+            <!-- map -->
+            <div id="map_disp" style="height: 400px;width: 500px;"></div>
+            <div class="m-3 float-right">
+                
+            </div>
+        
+            <div class="m-3">
+                <button onclick="toggleTips()" class="btn btn-secondary">Tutorial</button>
+                <div id="tips" class="m-3">
+                    <ol>
+                        <li>Select The Location By Clicking the Current Location Button</li>
+                        <li>Drag the Pin to change the location</li>
+                        <li>Click on Declare Containment Zone to save the location to the database </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="m-3 float-right">
+                <a href="data.html">Click Here To View The
+                        Containment Zones and Number of
+                        people visited</a>
+            </div>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+            integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                
+                } 
+                else {
+                    alert("No location");
+                }
+            }
+            function showPosition(position) {
+                $('#map_disp').locationpicker({
+                    location: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    },
+                    radius: 0,
+                    inputBinding: {
+                        latitudeInput: $('#lat'),
+                        longitudeInput: $('#lon'),
+                    },
+                    enableAutocomplete: true,
+                    onchanged: function (currentLocation, radius, isMarkerDropped) {
+                    }
+                });
+            }
+            function toggleTips() {
+                var x = document.getElementById("tips");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+            
+        
+        </script>
+        <script>
+            window.watsonAssistantChatOptions = {
+              integrationID: "14a46fdf-0fbd-4c73-96e7-c2c005a638f0", // The ID of this integration.
+              region: "au-syd", // The region your integration is hosted in.
+              serviceInstanceID: "12a8de04-10ab-41a6-94f8-1d832be08554", // The ID of your service instance.
+              onLoad: function(instance) { instance.render(); }
+            };
+            setTimeout(function(){
+              const t=document.createElement('script');
+              t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+              document.head.appendChild(t);
+            });
+          
+        </script>
+</body>
+
+</html>
